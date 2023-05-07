@@ -1,0 +1,9 @@
+asgiref==3.6.0
+async_generator==1.10
+beautifulsoup4==4.12.2
+Django==4.2.1
+django-crontab==0.7.1
+requests==2.30.0
+resource-retriever==1.12.7
+selenium==4.9.0
+
