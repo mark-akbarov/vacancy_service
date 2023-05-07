@@ -19,8 +19,8 @@ def scraper_func():
     for t in titles:
         s += f"{t.text}\n"
 
-    jobs=f"Total for today: {len(titles)}\n{s}"
-
-    send_sms(f"{jobs}\n{url}")
+    # send_sms(f"{jobs}\n{url}") # not working currently, due to negative balance
+    with open("vacancies.txt", 'w') as f:
+        f.write(f"Total for today: {len(titles)}\n{s}")
 
     driver.quit()
