@@ -1,4 +1,5 @@
 import os
+import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
@@ -22,7 +23,7 @@ def scraper_func():
     
     # send_sms(f"{jobs}\n{url}") # currently not working due to negative balance
     
-    with open(f"{os.path.dirname(os.path.abspath(__file__))}/vacancies.txt", "w") as f:
+    with open(f"{os.path.dirname(os.path.abspath(__file__))}/{datetime.date.today()}-vacancies.txt", "w") as f:
         f.write(f"Total for today: {len(titles)}\n{s}")
 
     driver.quit()
