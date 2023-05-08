@@ -1,7 +1,8 @@
+import os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
-from .sms_service import send_sms
+# from .sms_service import send_sms
 
 
 def scraper_func():
@@ -18,9 +19,10 @@ def scraper_func():
     s = "" 
     for t in titles:
         s += f"{t.text}\n"
-
-    # send_sms(f"{jobs}\n{url}") # not working currently, due to negative balance
-    with open("vacancies.txt", 'w') as f:
+    
+    # send_sms(f"{jobs}\n{url}") # currently not working due to negative balance
+    
+    with open(f"{os.path.dirname(os.path.abspath(__file__))}/vacancies.txt", "w") as f:
         f.write(f"Total for today: {len(titles)}\n{s}")
 
     driver.quit()
