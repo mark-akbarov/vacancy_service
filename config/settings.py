@@ -131,5 +131,5 @@ ESKIZ_PASSWORD='MJ0G0uxFaDmVK0cfG3msXCfIyaVLI4IQPxQeAjmq'
 ESKIZ_EMAIL='markakbarov@gmail.com'
 
 CRONJOBS = [
-    ('* * * * *', 'scraper_app.scraper_service.scraper_func'),    
+    ('0 10 * * *', 'scraper_app.scraper_service.scraper_func'),    
 ]
