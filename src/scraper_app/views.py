@@ -1,10 +1,19 @@
+import asyncio
 from django.shortcuts import render
-from .hh_task import hh_scraper
-from .djinni_task import djinni_scraper
+from .scraper_task import hh_scraper, djinni_scraper
+
+
+async def scrape_data():
+    tasks = [
+        asyncio.create_task(hh_scraper()),
+        asyncio.create_task(djinni_scraper()),
+    ]
+    results = await asyncio.gather(*tasks)
+    return results
 
 
 def index(request):
-    hh = hh_scraper()
-    djinni = djinni_scraper()
-    context = {"hh": hh, "djinni": djinni}
-    return render(request, "scraper_app/base.html", context)
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    jobs = loop.run_until_complete(scrape_data())
+    return render(request, "scraper_app/base.html", context={"jobs": jobs})
